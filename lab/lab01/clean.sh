@@ -1,3 +1,3 @@
 #!/bin/bash
 
-clab destroy --topo ./frr02.clab.yaml
+clab destroy --topo ./lab01.clab.yaml

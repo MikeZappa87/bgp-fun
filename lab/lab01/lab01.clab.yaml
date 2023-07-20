@@ -1,4 +1,4 @@
-name: frr02
+name: lab01
 
 topology:
   defaults:
@@ -39,14 +39,8 @@ topology:
       image: networkop/host:ifreload
       labels:
         ansible-group: client
-    pc03:
-      kind: linux
-      image: networkop/host:ifreload
-      labels:
-        ansible-group: client
   links:
     - endpoints: ["spine01:r0", "leaf01:eth1"]
     - endpoints: ["spine01:r1", "leaf02:eth1"]
     - endpoints: ["leaf01:swp10", "pc01:eth1"]
     - endpoints: ["leaf02:swp11", "pc02:eth1"]
-    - endpoints: ["leaf02:swp12", "pc03:eth1"]
