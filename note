@@ -1,0 +1,8 @@
+sudo apt-get install libpcap-dev
+
+
+https://github.com/osrg/gobgp/blob/f6175884156fc6cc327883588f72fb7c8854caf5/pkg/packet/bgp/bgp.go#L14521
+
+
+
+The lab isn't working yet

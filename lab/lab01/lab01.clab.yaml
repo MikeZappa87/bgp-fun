@@ -1,0 +1,52 @@
+name: frr02
+
+topology:
+  defaults:
+    labels:
+      ansible-no-host-var: "true"
+  nodes:
+    spine01:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - conf/daemons:/etc/frr/daemons
+        - conf/spine01.bgp.conf:/etc/frr/frr.conf
+      labels:
+        ansible-group: spine
+    leaf01:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - conf/daemons:/etc/frr/daemons
+        - conf/leaf01.bgp.conf:/etc/frr/frr.conf
+      labels:
+        ansible-group: leaf
+    leaf02:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - conf/daemons:/etc/frr/daemons
+        - conf/leaf02.bgp.conf:/etc/frr/frr.conf
+      labels:
+        ansible-group: leaf
+    pc01:
+      kind: linux
+      image: networkop/host:ifreload
+      labels:
+        ansible-group: client
+    pc02:
+      kind: linux
+      image: networkop/host:ifreload
+      labels:
+        ansible-group: client
+    pc03:
+      kind: linux
+      image: networkop/host:ifreload
+      labels:
+        ansible-group: client
+  links:
+    - endpoints: ["spine01:r0", "leaf01:eth1"]
+    - endpoints: ["spine01:r1", "leaf02:eth1"]
+    - endpoints: ["leaf01:swp10", "pc01:eth1"]
+    - endpoints: ["leaf02:swp11", "pc02:eth1"]
+    - endpoints: ["leaf02:swp12", "pc03:eth1"]
